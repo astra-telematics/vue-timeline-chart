@@ -59,8 +59,8 @@
             >
               <div
                 v-for="(item, index) in visibleItems.filter((i) => i.group === group.id && i.type != 'background').sort((a, b) => a.start - b.start)"
-                v-tooltip="item.tooltip"
                 :key="index"
+                v-tooltip="item.tooltip"
                 :style="{ '--_left': `${getLeftPos(item.start, item.end)}px`, '--_width': item.type !== 'point' ? `${getItemWidth(item.start, item.end)}px` : null, ...item.cssVariables }"
                 :class="['item', item.type, item.className, {active: activeItems.includes(item.id)}]"
                 @click.stop="onClick($event, item)"
@@ -199,6 +199,7 @@
     maxViewportDuration: undefined,
     initialViewportStart: undefined,
     initialViewportEnd: undefined,
+    tooltip: null,
     renderTimestampLabel: (timestamp: number, scale: { unit: string, step: number}) => {
       const date = new Date(timestamp);
       let returnValue = '';
